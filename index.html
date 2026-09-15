@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Radical Bikes Race · Portal de gestión (vista previa)</title>
+<meta name="description" content="Vista previa del portal de gestión del taller: facturas, clientes, órdenes de trabajo, recambios y contabilidad.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilos.css">
+<link rel="icon" href="assets/logo.jpg">
+</head>
+<body>
+
+<div class="aviso-demo">
+  <b>Vista previa</b>
+  <span>Los datos que ves son de ejemplo, con nombres y cifras inventados, para que veas cómo quedaría tu taller.</span>
+</div>
+
+<div class="app">
+  <aside class="lateral">
+    <div class="marca">
+      <img src="assets/logo.jpg" alt="Radical Bikes Race">
+      <div class="marca-txt">
+        <strong>RADICAL BIKES</strong>
+        <span>Taller · Torrejón</span>
+      </div>
+    </div>
+
+    <nav class="menu">
+      <button data-seccion="panel" class="activo"><span class="ico">▦</span> Panel</button>
+      <button data-seccion="facturas"><span class="ico">€</span> Facturas <span class="cuenta"></span></button>
+      <button data-seccion="clientes"><span class="ico">☺</span> Clientes <span class="cuenta"></span></button>
+      <button data-seccion="ordenes"><span class="ico">⚙</span> Órdenes de trabajo <span class="cuenta"></span></button>
+      <button data-seccion="recambios"><span class="ico">▣</span> Recambios <span class="cuenta"></span></button>
+      <button data-seccion="contabilidad"><span class="ico">≡</span> Contabilidad</button>
+    </nav>
+
+    <div class="lateral-pie">
+      <b>Tu taller, tus datos.</b><br>
+      Dominio propio, copias diarias y facturas cumpliendo VeriFactu.<br><br>
+      Vista previa preparada por NEO Labs.
+    </div>
+  </aside>
+
+  <main class="principal">
+    <header class="barra">
+      <div>
+        <h1 id="titulo">Panel del taller</h1>
+        <div class="sub" id="subtitulo">Todo lo del día en una pantalla</div>
+      </div>
+      <div class="barra-acciones">
+        <input class="buscar" id="buscar" placeholder="Buscar cliente, factura, pieza...">
+        <button class="btn oculto" id="btn-nueva">+ Nueva factura</button>
+      </div>
+    </header>
+    <div class="contenido" id="contenido"></div>
+  </main>
+</div>
+
+<div class="velo" id="velo">
+  <div class="modal">
+    <div class="modal-cab">
+      <h3 id="modal-titulo">Detalle</h3>
+      <button class="cerrar" aria-label="Cerrar">×</button>
+    </div>
+    <div class="modal-cuerpo" id="modal-cuerpo"></div>
+  </div>
+</div>
+
+<script src="datos.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
