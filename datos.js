@@ -66,7 +66,7 @@ const ORDENES = [
   { num: "OT-2026-116", cliente: "C-06", moto: "BMW R 1250 GS", trabajo: "Revisión 50.000 km y cambio de líquidos", estado: "En taller", entrada: "2026-09-12", prevista: "2026-09-17" },
   { num: "OT-2026-115", cliente: "C-07", moto: "Yamaha Ténéré 700", trabajo: "Montaje de defensas y cubrecárter", estado: "Lista", entrada: "2026-09-09", prevista: "2026-09-15" },
   { num: "OT-2026-114", cliente: "C-02", moto: "Honda CB500X", trabajo: "Puesta a punto pre ITV y aceite", estado: "Entregada", entrada: "2026-09-05", prevista: "2026-09-08" },
-  { num: "OT-2026-113", cliente: "C-03", moto: "KTM 390 Duke", trabajo: "Diagnostico eléctrico y bateria", estado: "Entregada", entrada: "2026-09-02", prevista: "2026-09-03" },
+  { num: "OT-2026-113", cliente: "C-03", moto: "KTM 390 Duke", trabajo: "Diagnóstico eléctrico y batería", estado: "Entregada", entrada: "2026-09-02", prevista: "2026-09-03" },
   { num: "OT-2026-112", cliente: "C-08", moto: "Ducati Monster 821", trabajo: "Reglaje de válvulas y sincronización", estado: "Entregada", entrada: "2026-08-18", prevista: "2026-08-20" }
 ];
 
