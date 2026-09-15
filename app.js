@@ -119,7 +119,7 @@ function graficoBarrasH(datos, ancho = (window.innerWidth < 760 ? 380 : 470)) {
     const y = i * 34 + 4, w = (d.valor / max) * (ancho - 205);
     filas += `<text x="0" y="${y + 15}" style="fill:#b9c3d1">${cortoTexto(d.nombre)}</text>
       <rect x="160" y="${y + 3}" width="${w.toFixed(1)}" height="16" rx="5" fill="url(#degradadoAmarillo)"/>
-      <text x="${166 + w.toFixed(1)}" y="${y + 16}" style="fill:#f2f5fa">${d.valor}</text>`;
+      <text x="${(166 + w).toFixed(1)}" y="${y + 16}" style="fill:#f2f5fa">${d.valor}</text>`;
   });
   return `<svg class="grafico" viewBox="0 0 ${ancho} ${alto}">
     <defs><linearGradient id="degradadoAmarillo" x1="0" y1="0" x2="1" y2="0">
