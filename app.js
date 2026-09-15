@@ -318,7 +318,7 @@ function modalCliente(id) {
   const c = cliente(id), m = c.motos[0] || {};
   const suyas = facturas.filter(f => f.cliente === id);
   abrirModal(c.nombre, `
-    <div class="fila-datos"><span>Telefono</span><b>${c.telefono}</b></div>
+    <div class="fila-datos"><span>Teléfono</span><b>${c.telefono}</b></div>
     <div class="fila-datos"><span>Correo</span><b>${c.email}</b></div>
     <div class="fila-datos"><span>Cliente desde</span><b>${(c.desde || "").split("-").reverse().join("/")}</b></div>
     <div class="sub-bloque"><h4>Moto</h4>
