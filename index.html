@@ -72,5 +72,17 @@
 
 <script src="datos.js"></script>
 <script src="app.js"></script>
+<script>
+  // en pantallas estrechas, un texto de busqueda mas corto
+  (function () {
+    var caja = document.querySelector("#buscar");
+    function ajusta() {
+      caja.placeholder = window.innerWidth < 700 ? "Buscar" : "Buscar cliente, factura, pieza";
+      pintarTodo();
+    }
+    window.addEventListener("resize", ajusta);
+    window.addEventListener("load", ajusta);
+  })();
+</script>
 </body>
 </html>

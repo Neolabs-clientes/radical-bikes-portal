@@ -216,6 +216,7 @@ tbody tr:last-child td { border-bottom: 0; }
 
 /* GRAFICOS */
 .grafico { width: 100%; height: auto; display: block; }
+.grafico text { font-size: 15px; fill: #b9c3d1; }
 .barras line.eje, .lineas line.eje { stroke: rgba(255, 255, 255, .1); stroke-width: 1; }
 .barras rect.barra { fill: url(#degradadoAmarillo); }
 .barras text, .lineas text, .donut text { fill: var(--muted); font-size: 11px; font-family: Inter, sans-serif; }

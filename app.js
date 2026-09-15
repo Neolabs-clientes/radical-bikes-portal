@@ -37,7 +37,9 @@ function hashFactura(f) {
 }
 
 /* ---------- graficos SVG ---------- */
-function graficoBarras(datos, ancho = 660, alto = 260) {
+function anchoGrafico() { return window.innerWidth < 760 ? 380 : 660; }
+
+function graficoBarras(datos, ancho = anchoGrafico(), alto = 260) {
   const max = Math.max(...datos.map(d => d.valor)) * 1.15;
   const izq = 52, abajo = 34, arriba = 14;
   const anchoBarra = (ancho - izq - 14) / datos.length;
@@ -60,11 +62,10 @@ function graficoBarras(datos, ancho = 660, alto = 260) {
     <defs><linearGradient id="degradadoAmarillo" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#ffd76a"/><stop offset="100%" stop-color="#d9a512"/></linearGradient></defs>
     ${ejes}${barras}${etiquetas}
-    <text x="${ancho - 6}" y="${alto - 6}" text-anchor="end">Facturación mensual, base sin IVA</text>
   </svg>`;
 }
 
-function graficoDonut(datos, tam = 240) {
+function graficoDonut(datos, tam = (window.innerWidth < 760 ? 210 : 240)) {
   const totalV = datos.reduce((s, d) => s + d.valor, 0);
   const r = 84, cx = tam / 2, cy = tam / 2, grosor = 26;
   let angulo = -Math.PI / 2, trozos = "";
@@ -85,7 +86,7 @@ function graficoDonut(datos, tam = 240) {
   </svg>`;
 }
 
-function graficoLineas(series, ancho = 660, alto = 240) {
+function graficoLineas(series, ancho = anchoGrafico(), alto = 240) {
   const max = Math.max(...series.flatMap(s => s.datos)) * 1.2;
   const izq = 54, abajo = 30, arriba = 14;
   const x = i => izq + (i / (CONTABILIDAD.length - 1)) * (ancho - izq - 16);
@@ -111,14 +112,14 @@ function cortoTexto(t, n = 24) {
   return t.length > n ? t.slice(0, n - 1).trimEnd() + "…" : t;
 }
 
-function graficoBarrasH(datos, ancho = 470) {
+function graficoBarrasH(datos, ancho = (window.innerWidth < 760 ? 380 : 470)) {
   const alto = datos.length * 34 + 14, max = Math.max(...datos.map(d => d.valor));
   let filas = "";
   datos.forEach((d, i) => {
     const y = i * 34 + 4, w = (d.valor / max) * (ancho - 205);
-    filas += `<text x="0" y="${y + 15}" style="fill:#b9c3d1;font-size:12px">${cortoTexto(d.nombre)}</text>
+    filas += `<text x="0" y="${y + 15}" style="fill:#b9c3d1">${cortoTexto(d.nombre)}</text>
       <rect x="160" y="${y + 3}" width="${w.toFixed(1)}" height="16" rx="5" fill="url(#degradadoAmarillo)"/>
-      <text x="${166 + w.toFixed(1)}" y="${y + 16}" style="fill:#f2f5fa;font-size:12px">${d.valor}</text>`;
+      <text x="${166 + w.toFixed(1)}" y="${y + 16}" style="fill:#f2f5fa">${d.valor}</text>`;
   });
   return `<svg class="grafico" viewBox="0 0 ${ancho} ${alto}">
     <defs><linearGradient id="degradadoAmarillo" x1="0" y1="0" x2="1" y2="0">
