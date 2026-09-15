@@ -222,15 +222,15 @@ function vistaClientes() {
 function vistaOrdenes() {
   const estados = ["Recibida", "En taller", "Esperando recambio", "Lista"];
   return `
-  <div class="tarjeta"><div class="tarjeta-cab"><h3>Ordenes de trabajo</h3>
-    <span class="pista">donde esta cada moto y que le falta</span></div>
+  <div class="tarjeta"><div class="tarjeta-cab"><h3>Órdenes abiertas</h3>
+    <span class="pista">cada moto, su estado y su fecha prevista</span></div>
     <div class="tarjeta-cuerpo"><div class="kanban">
     ${estados.map(e => {
       const grupo = ORDENES.filter(o => o.estado === e);
       return `<div class="columna"><h4>${e}<span>${grupo.length}</span></h4>
         ${grupo.map(o => `<div class="tarjeta-ot" data-orden="${o.num}"><b>${cliente(o.cliente).nombre}</b>
           <div class="moto">${o.moto} · ${o.trabajo}</div>
-          <div class="pie"><span>${o.num}</span><span>prevista ${o.prevista.split("-").reverse().join("/")}</span></div></div>`).join("") || `<div class="suave" style="font-size:13px">Sin motos aqui</div>`}
+          <div class="pie"><span>${o.num}</span><span>prevista ${o.prevista.split("-").reverse().join("/")}</span></div></div>`).join("") || `<div class="suave" style="font-size:13px">Sin motos aquí</div>`}
       </div>`;
     }).join("")}
     </div></div>
@@ -243,7 +243,7 @@ function vistaRecambios() {
   <div class="tarjeta"><div class="tarjeta-cab"><h3>Inventario de recambios</h3>
     <span class="pista">stock, mínimos y margen de cada pieza</span></div>
     <div class="tabla-scroll"><table><thead><tr>
-      <th>Referencia</th><th>Pieza</th><th class="derecha">Stock</th><th class="derecha">Minimo</th>
+      <th>Referencia</th><th>Pieza</th><th class="derecha">Stock</th><th class="derecha">Mínimo</th>
       <th class="derecha">Coste</th><th class="derecha">PVP</th><th class="derecha">Margen</th><th>Aviso</th><th></th></tr></thead><tbody>
       ${lista.map(r => {
         const margen = ((r.pvp - r.coste) / r.pvp) * 100;
@@ -341,7 +341,7 @@ function modalRecambio(ref) {
     <div class="fila-datos"><span>Referencia</span><b class="num">${r.ref}</b></div>
     <div class="fila-datos"><span>Proveedor</span><b>${r.proveedor}</b></div>
     <div class="fila-datos"><span>Stock actual</span><b class="num">${r.stock} unidades</b></div>
-    <div class="fila-datos"><span>Minimo de seguridad</span><b class="num">${r.mínimo}</b></div>
+    <div class="fila-datos"><span>Mínimo de seguridad</span><b class="num">${r.mínimo}</b></div>
     <div class="fila-datos"><span>Precio de coste</span><b class="num">${eur(r.coste)}</b></div>
     <div class="fila-datos"><span>Precio de venta</span><b class="num">${eur(r.pvp)}</b></div>
     <div class="fila-datos"><span>Margen</span><b class="num" style="color:#35d07f">${margen.toFixed(1)}%</b></div>
@@ -404,7 +404,7 @@ function pintarTodo() {
   }[seccion])();
   const titulos = {
     panel: "Panel del taller", facturas: "Facturas", clientes: "Clientes",
-    ordenes: "Ordenes de trabajo", recambios: "Recambios", contabilidad: "Contabilidad"
+    ordenes: "Órdenes de trabajo", recambios: "Recambios", contabilidad: "Contabilidad"
   };
   document.querySelector("#titulo").textContent = titulos[seccion];
   const subtitulos = {
