@@ -1,9 +1,9 @@
 /* Datos de ejemplo, taller de motos. Todo inventado para la vista previa. */
 const TALLER = {
   nombre: "Radical Bikes Race",
-  ciudad: "Torrejon de la Calzada",
+  ciudad: "Torrejón de la Calzada",
   nif: "B12345678",
-  direccion: "Calle de Eulalia Sauquillo, 6, Local, 28991 Torrejon de la Calzada, Madrid",
+  direccion: "Calle de Eulalia Sauquillo, 6, Local, 28991 Torrejón de la Calzada, Madrid",
   telefono: "91 000 00 00",
   email: "taller@radicalbikesrace.com"
 };
@@ -27,47 +27,47 @@ const CLIENTES = [
       { marca: "Ducati", modelo: "Monster 821", anyo: 2017, matricula: "6789 QWE", km: 47200, color: "#c0392b" } ] }
 ];
 
-const TIPOS = ["Mantenimiento", "Neumaticos", "Averias", "Preparaciones"];
+const TIPOS = ["Mantenimiento", "Neumáticos", "Averías", "Preparaciones"];
 
 const FACTURAS = [
-  { num: "RB-2026-0041", fecha: "2026-09-12", cliente: "C-04", concepto: "Cambio de neumaticos y equilibrado", base: 168.00, tipo: "Neumaticos", estado: "Cobrada" },
-  { num: "RB-2026-0040", fecha: "2026-09-10", cliente: "C-01", concepto: "Revision 20.000 km, aceite y filtros", base: 189.50, tipo: "Mantenimiento", estado: "Cobrada" },
-  { num: "RB-2026-0039", fecha: "2026-09-08", cliente: "C-05", concepto: "Kit de arrastre y ajuste de valvulas", base: 245.00, tipo: "Mantenimiento", estado: "Pendiente" },
+  { num: "RB-2026-0041", fecha: "2026-09-12", cliente: "C-04", concepto: "Cambio de neumáticos y equilibrado", base: 168.00, tipo: "Neumáticos", estado: "Cobrada" },
+  { num: "RB-2026-0040", fecha: "2026-09-10", cliente: "C-01", concepto: "Revisión 20.000 km, aceite y filtros", base: 189.50, tipo: "Mantenimiento", estado: "Cobrada" },
+  { num: "RB-2026-0039", fecha: "2026-09-08", cliente: "C-05", concepto: "Kit de arrastre y ajuste de válvulas", base: 245.00, tipo: "Mantenimiento", estado: "Pendiente" },
   { num: "RB-2026-0038", fecha: "2026-09-05", cliente: "C-06", concepto: "Pastillas y liquido de frenos", base: 132.40, tipo: "Mantenimiento", estado: "Cobrada" },
-  { num: "RB-2026-0037", fecha: "2026-09-03", cliente: "C-03", concepto: "Bateria y diagnostico electrico", base: 96.00, tipo: "Averias", estado: "Cobrada" },
+  { num: "RB-2026-0037", fecha: "2026-09-03", cliente: "C-03", concepto: "Bateria y diagnóstico eléctrico", base: 96.00, tipo: "Averías", estado: "Cobrada" },
   { num: "RB-2026-0036", fecha: "2026-08-28", cliente: "C-02", concepto: "Puesta a punto pre ITV y aceite", base: 145.80, tipo: "Mantenimiento", estado: "Cobrada" },
   { num: "RB-2026-0035", fecha: "2026-08-25", cliente: "C-07", concepto: "Montaje de defensas y cubrecarter", base: 210.00, tipo: "Preparaciones", estado: "Pendiente" },
-  { num: "RB-2026-0034", fecha: "2026-08-20", cliente: "C-08", concepto: "Reglaje de valvulas y sincronizacion", base: 268.90, tipo: "Mantenimiento", estado: "Cobrada" },
-  { num: "RB-2026-0033", fecha: "2026-08-14", cliente: "C-01", concepto: "Neumatico trasero y equilibrado", base: 178.00, tipo: "Neumaticos", estado: "Cobrada" },
+  { num: "RB-2026-0034", fecha: "2026-08-20", cliente: "C-08", concepto: "Reglaje de válvulas y sincronización", base: 268.90, tipo: "Mantenimiento", estado: "Cobrada" },
+  { num: "RB-2026-0033", fecha: "2026-08-14", cliente: "C-01", concepto: "Neumático trasero y equilibrado", base: 178.00, tipo: "Neumáticos", estado: "Cobrada" },
   { num: "RB-2026-0032", fecha: "2026-08-07", cliente: "C-04", concepto: "Kit de arrastre completo", base: 235.60, tipo: "Mantenimiento", estado: "Cobrada" },
-  { num: "RB-2026-0031", fecha: "2026-07-30", cliente: "C-05", concepto: "Revision anual 5.000 km", base: 89.90, tipo: "Mantenimiento", estado: "Cobrada" },
-  { num: "RB-2026-0030", fecha: "2026-07-22", cliente: "C-03", concepto: "Reparacion de pinchazo y neumatico delantero", base: 142.30, tipo: "Averias", estado: "Cobrada" }
+  { num: "RB-2026-0031", fecha: "2026-07-30", cliente: "C-05", concepto: "Revisión anual 5.000 km", base: 89.90, tipo: "Mantenimiento", estado: "Cobrada" },
+  { num: "RB-2026-0030", fecha: "2026-07-22", cliente: "C-03", concepto: "Reparacion de pinchazo y neumático delantero", base: 142.30, tipo: "Averías", estado: "Cobrada" }
 ];
 
 const RECAMBIOS = [
-  { ref: "R-1001", nombre: "Kit de arrastre DID 525 VX", proveedor: "DID", stock: 4, minimo: 2, coste: 78.00, pvp: 148.00 },
-  { ref: "R-1002", nombre: "Neumatico Michelin Road 6 180/55 R17", proveedor: "Michelin", stock: 6, minimo: 4, coste: 132.00, pvp: 218.00 },
-  { ref: "R-1003", nombre: "Neumatico Michelin Road 6 120/70 R17", proveedor: "Michelin", stock: 2, minimo: 4, coste: 98.00, pvp: 172.00 },
-  { ref: "R-1004", nombre: "Pastillas de freno Brembo sinterizadas", proveedor: "Brembo", stock: 9, minimo: 6, coste: 22.50, pvp: 44.90 },
-  { ref: "R-1005", nombre: "Filtro de aceite original Yamaha", proveedor: "Yamaha", stock: 14, minimo: 6, coste: 6.80, pvp: 14.50 },
-  { ref: "R-1006", nombre: "Aceite Motul 7100 10W40 (4 L)", proveedor: "Motul", stock: 8, minimo: 5, coste: 32.00, pvp: 58.00 },
-  { ref: "R-1007", nombre: "Bujia NGK iridio", proveedor: "NGK", stock: 22, minimo: 10, coste: 9.40, pvp: 19.80 },
-  { ref: "R-1008", nombre: "Bateria Yuasa YTZ10S", proveedor: "Yuasa", stock: 3, minimo: 2, coste: 58.00, pvp: 112.00 },
-  { ref: "R-1009", nombre: "Liquido de frenos DOT 4 (500 ml)", proveedor: "Motul", stock: 11, minimo: 6, coste: 5.20, pvp: 12.50 },
-  { ref: "R-1010", nombre: "Correa de transmision secundaria", proveedor: "Malossi", stock: 1, minimo: 2, coste: 96.00, pvp: 178.00 },
-  { ref: "R-1011", nombre: "Amortiguador trasero Ohlins STX", proveedor: "Ohlins", stock: 2, minimo: 1, coste: 420.00, pvp: 690.00 },
-  { ref: "R-1012", nombre: "Maneta de freno derecha", proveedor: "Varias", stock: 7, minimo: 4, coste: 14.00, pvp: 32.00 }
+  { ref: "R-1001", nombre: "Kit de arrastre DID 525 VX", proveedor: "DID", stock: 4, mínimo: 2, coste: 78.00, pvp: 148.00 },
+  { ref: "R-1002", nombre: "Neumático Michelin Road 6 180/55 R17", proveedor: "Michelin", stock: 6, mínimo: 4, coste: 132.00, pvp: 218.00 },
+  { ref: "R-1003", nombre: "Neumático Michelin Road 6 120/70 R17", proveedor: "Michelin", stock: 2, mínimo: 4, coste: 98.00, pvp: 172.00 },
+  { ref: "R-1004", nombre: "Pastillas de freno Brembo sinterizadas", proveedor: "Brembo", stock: 9, mínimo: 6, coste: 22.50, pvp: 44.90 },
+  { ref: "R-1005", nombre: "Filtro de aceite original Yamaha", proveedor: "Yamaha", stock: 14, mínimo: 6, coste: 6.80, pvp: 14.50 },
+  { ref: "R-1006", nombre: "Aceite Motul 7100 10W40 (4 L)", proveedor: "Motul", stock: 8, mínimo: 5, coste: 32.00, pvp: 58.00 },
+  { ref: "R-1007", nombre: "Bujia NGK iridio", proveedor: "NGK", stock: 22, mínimo: 10, coste: 9.40, pvp: 19.80 },
+  { ref: "R-1008", nombre: "Bateria Yuasa YTZ10S", proveedor: "Yuasa", stock: 3, mínimo: 2, coste: 58.00, pvp: 112.00 },
+  { ref: "R-1009", nombre: "Liquido de frenos DOT 4 (500 ml)", proveedor: "Motul", stock: 11, mínimo: 6, coste: 5.20, pvp: 12.50 },
+  { ref: "R-1010", nombre: "Correa de transmision secundaria", proveedor: "Malossi", stock: 1, mínimo: 2, coste: 96.00, pvp: 178.00 },
+  { ref: "R-1011", nombre: "Amortiguador trasero Ohlins STX", proveedor: "Ohlins", stock: 2, mínimo: 1, coste: 420.00, pvp: 690.00 },
+  { ref: "R-1012", nombre: "Maneta de freno derecha", proveedor: "Varias", stock: 7, mínimo: 4, coste: 14.00, pvp: 32.00 }
 ];
 
 const ORDENES = [
-  { num: "OT-2026-119", cliente: "C-01", moto: "Yamaha MT-07", trabajo: "Cambio de neumatico trasero y equilibrado", estado: "Recibida", entrada: "2026-09-15", prevista: "2026-09-16" },
+  { num: "OT-2026-119", cliente: "C-01", moto: "Yamaha MT-07", trabajo: "Cambio de neumático trasero y equilibrado", estado: "Recibida", entrada: "2026-09-15", prevista: "2026-09-16" },
   { num: "OT-2026-118", cliente: "C-04", moto: "Kawasaki Z900", trabajo: "Kit de arrastre y ajuste de cadena", estado: "En taller", entrada: "2026-09-14", prevista: "2026-09-16" },
-  { num: "OT-2026-117", cliente: "C-05", moto: "Vespa Primavera 125", trabajo: "Correa de variador y ajuste de valvulas", estado: "Esperando recambio", entrada: "2026-09-11", prevista: "2026-09-18" },
-  { num: "OT-2026-116", cliente: "C-06", moto: "BMW R 1250 GS", trabajo: "Revision 50.000 km y cambio de liquidos", estado: "En taller", entrada: "2026-09-12", prevista: "2026-09-17" },
+  { num: "OT-2026-117", cliente: "C-05", moto: "Vespa Primavera 125", trabajo: "Correa de variador y ajuste de válvulas", estado: "Esperando recambio", entrada: "2026-09-11", prevista: "2026-09-18" },
+  { num: "OT-2026-116", cliente: "C-06", moto: "BMW R 1250 GS", trabajo: "Revisión 50.000 km y cambio de liquidos", estado: "En taller", entrada: "2026-09-12", prevista: "2026-09-17" },
   { num: "OT-2026-115", cliente: "C-07", moto: "Yamaha Tenere 700", trabajo: "Montaje de defensas y cubrecarter", estado: "Lista", entrada: "2026-09-09", prevista: "2026-09-15" },
   { num: "OT-2026-114", cliente: "C-02", moto: "Honda CB500X", trabajo: "Puesta a punto pre ITV y aceite", estado: "Entregada", entrada: "2026-09-05", prevista: "2026-09-08" },
-  { num: "OT-2026-113", cliente: "C-03", moto: "KTM 390 Duke", trabajo: "Diagnostico electrico y bateria", estado: "Entregada", entrada: "2026-09-02", prevista: "2026-09-03" },
-  { num: "OT-2026-112", cliente: "C-08", moto: "Ducati Monster 821", trabajo: "Reglaje de valvulas y sincronizacion", estado: "Entregada", entrada: "2026-08-18", prevista: "2026-08-20" }
+  { num: "OT-2026-113", cliente: "C-03", moto: "KTM 390 Duke", trabajo: "Diagnostico eléctrico y bateria", estado: "Entregada", entrada: "2026-09-02", prevista: "2026-09-03" },
+  { num: "OT-2026-112", cliente: "C-08", moto: "Ducati Monster 821", trabajo: "Reglaje de válvulas y sincronización", estado: "Entregada", entrada: "2026-08-18", prevista: "2026-08-20" }
 ];
 
 const MESES = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre"];
@@ -99,6 +99,6 @@ const TOP_RECAMBIOS = [
   { nombre: "Aceite 10W40", uds: 38 },
   { nombre: "Pastillas de freno", uds: 29 },
   { nombre: "Bujias", uds: 24 },
-  { nombre: "Neumaticos", uds: 17 },
+  { nombre: "Neumáticos", uds: 17 },
   { nombre: "Kits de arrastre", uds: 11 }
 ];

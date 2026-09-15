@@ -1,4 +1,4 @@
-/* Vista previa del portal de gestion. Datos de ejemplo en memoria. */
+/* Vista previa del portal de gestión. Datos de ejemplo en memoria. */
 const IVA = 0.21;
 let facturas = JSON.parse(JSON.stringify(FACTURAS));
 let recambios = JSON.parse(JSON.stringify(RECAMBIOS));
@@ -60,7 +60,7 @@ function graficoBarras(datos, ancho = 660, alto = 260) {
     <defs><linearGradient id="degradadoAmarillo" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#ffd76a"/><stop offset="100%" stop-color="#d9a512"/></linearGradient></defs>
     ${ejes}${barras}${etiquetas}
-    <text x="${ancho - 6}" y="${alto - 6}" text-anchor="end">Facturacion mensual, base sin IVA</text>
+    <text x="${ancho - 6}" y="${alto - 6}" text-anchor="end">Facturación mensual, base sin IVA</text>
   </svg>`;
 }
 
@@ -107,14 +107,18 @@ function graficoLineas(series, ancho = 660, alto = 240) {
   return `<svg class="grafico lineas" viewBox="0 0 ${ancho} ${alto}">${ejes}${lineas}${puntos}${textos}</svg>`;
 }
 
-function graficoBarrasH(datos, ancho = 420) {
-  const alto = datos.length * 34 + 16, max = Math.max(...datos.map(d => d.valor));
+function cortoTexto(t, n = 24) {
+  return t.length > n ? t.slice(0, n - 1).trimEnd() + "…" : t;
+}
+
+function graficoBarrasH(datos, ancho = 470) {
+  const alto = datos.length * 34 + 14, max = Math.max(...datos.map(d => d.valor));
   let filas = "";
   datos.forEach((d, i) => {
-    const y = i * 34 + 4, w = (d.valor / max) * (ancho - 150);
-    filas += `<text x="0" y="${y + 15}" style="fill:#b9c3d1">${d.nombre}</text>
-      <rect x="132" y="${y + 3}" width="${w.toFixed(1)}" height="16" rx="5" fill="url(#degradadoAmarillo)"/>
-      <text x="${140 + w.toFixed(1)}" y="${y + 16}" style="fill:#fff">${d.valor}</text>`;
+    const y = i * 34 + 4, w = (d.valor / max) * (ancho - 205);
+    filas += `<text x="0" y="${y + 15}" style="fill:#b9c3d1;font-size:12px">${cortoTexto(d.nombre)}</text>
+      <rect x="160" y="${y + 3}" width="${w.toFixed(1)}" height="16" rx="5" fill="url(#degradadoAmarillo)"/>
+      <text x="${166 + w.toFixed(1)}" y="${y + 16}" style="fill:#f2f5fa;font-size:12px">${d.valor}</text>`;
   });
   return `<svg class="grafico" viewBox="0 0 ${ancho} ${alto}">
     <defs><linearGradient id="degradadoAmarillo" x1="0" y1="0" x2="1" y2="0">
@@ -126,7 +130,7 @@ function kpis() {
   const mesActual = facturas.filter(f => f.fecha.startsWith("2026-09"));
   const facturadoMes = mesActual.reduce((s, f) => s + f.base, 0);
   const pendiente = facturas.filter(f => f.estado === "Pendiente").reduce((s, f) => s + total(f), 0);
-  const bajoMinimo = recambios.filter(r => r.stock < r.minimo);
+  const bajoMinimo = recambios.filter(r => r.stock < r.mínimo);
   const ticket = facturas.length ? facturas.reduce((s, f) => s + f.base, 0) / facturas.length : 0;
   return { facturadoMes, pendiente, bajoMinimo, ticket, nFacturas: facturas.length };
 }
@@ -147,13 +151,13 @@ function vistaPanel() {
     <div class="kpi"><div class="kpi-eti">Pendiente de cobro</div><div class="kpi-valor">${eur(k.pendiente)}</div>
       <div class="kpi-pie"><span class="aviso">${facturas.filter(f => f.estado === "Pendiente").length} facturas sin cobrar</span></div></div>
     <div class="kpi"><div class="kpi-eti">Ticket medio</div><div class="kpi-valor">${eur(k.ticket)}</div>
-      <div class="kpi-pie">sobre ${k.nFacturas} facturas del ano</div></div>
-    <div class="kpi"><div class="kpi-eti">Recambios bajo minimo</div><div class="kpi-valor">${k.bajoMinimo.length}</div>
+      <div class="kpi-pie">sobre ${k.nFacturas} facturas del año</div></div>
+    <div class="kpi"><div class="kpi-eti">Recambios bajo mínimo</div><div class="kpi-valor">${k.bajoMinimo.length}</div>
       <div class="kpi-pie">${k.bajoMinimo.map(r => r.ref).join(", ") || "todo en orden"}</div></div>
   </div>
   <div class="dos-columnas">
-    <div class="tarjeta"><div class="tarjeta-cab"><h3>Facturacion por mes</h3>
-      <span class="pista">base sin IVA, ano en curso</span></div>
+    <div class="tarjeta"><div class="tarjeta-cab"><h3>Facturación por mes</h3>
+      <span class="pista">base sin IVA, año en curso</span></div>
       <div class="tarjeta-cuerpo">${graficoBarras(barras)}</div></div>
     <div class="tarjeta"><div class="tarjeta-cab"><h3>Reparto del trabajo</h3>
       <span class="pista">facturas por tipo</span></div>
@@ -162,10 +166,10 @@ function vistaPanel() {
     </div>
   </div>
   <div class="dos-columnas">
-    <div class="tarjeta"><div class="tarjeta-cab"><h3>Ingresos y gastos</h3><span class="pista">evolucion del ano</span></div>
+    <div class="tarjeta"><div class="tarjeta-cab"><h3>Ingresos y gastos</h3><span class="pista">evolucion del año</span></div>
       <div class="tarjeta-cuerpo">${graficoLineas(series)}</div>
       <div class="leyenda"><span><i style="background:#ffc93c"></i>Ingresos</span><span><i style="background:#ff5c5c"></i>Gastos</span></div></div>
-    <div class="tarjeta"><div class="tarjeta-cab"><h3>Recambios mas vendidos</h3><span class="pista">unidades del ano</span></div>
+    <div class="tarjeta"><div class="tarjeta-cab"><h3>Recambios más vendidos</h3><span class="pista">unidades del año</span></div>
       <div class="tarjeta-cuerpo">${graficoBarrasH(TOP_RECAMBIOS)}</div></div>
   </div>`;
 }
@@ -179,7 +183,7 @@ function vistaFacturas() {
   <div class="tarjeta"><div class="tarjeta-cab"><h3>Facturas y presupuestos</h3>
     <span class="pista">últimas 12, con su huella y su estado</span></div>
     <div class="tabla-scroll"><table><thead><tr>
-      <th>Numero</th><th>Fecha</th><th>Cliente</th><th>Concepto</th><th class="derecha">Base</th>
+      <th>Número</th><th>Fecha</th><th>Cliente</th><th>Concepto</th><th class="derecha">Base</th>
       <th class="derecha">IVA 21%</th><th class="derecha">Total</th><th>Estado</th></tr></thead><tbody>
       ${lista.map(f => `<tr data-factura="${f.num}">
         <td class="num fuerte">${f.num}</td><td class="num suave">${f.fecha.split("-").reverse().join("/")}</td>
@@ -236,16 +240,16 @@ function vistaRecambios() {
   const lista = recambios.filter(r => `${r.ref} ${r.nombre} ${r.proveedor}`.toLowerCase().includes(filtro.toLowerCase()));
   return `
   <div class="tarjeta"><div class="tarjeta-cab"><h3>Inventario de recambios</h3>
-    <span class="pista">stock, minimos y margen de cada pieza</span></div>
+    <span class="pista">stock, mínimos y margen de cada pieza</span></div>
     <div class="tabla-scroll"><table><thead><tr>
       <th>Referencia</th><th>Pieza</th><th class="derecha">Stock</th><th class="derecha">Minimo</th>
       <th class="derecha">Coste</th><th class="derecha">PVP</th><th class="derecha">Margen</th><th>Aviso</th><th></th></tr></thead><tbody>
       ${lista.map(r => {
         const margen = ((r.pvp - r.coste) / r.pvp) * 100;
-        const bajo = r.stock < r.minimo;
+        const bajo = r.stock < r.mínimo;
         return `<tr data-recambio="${r.ref}">
           <td class="num suave">${r.ref}</td><td class="fuerte">${r.nombre}</td>
-          <td class="num derecha">${r.stock}</td><td class="num derecha suave">${r.minimo}</td>
+          <td class="num derecha">${r.stock}</td><td class="num derecha suave">${r.mínimo}</td>
           <td class="num derecha suave">${eur(r.coste)}</td><td class="num derecha">${eur(r.pvp)}</td>
           <td class="num derecha">${margen.toFixed(0)}%</td>
           <td><span class="etiqueta ${bajo ? "e-bajo" : "e-ok"}">${bajo ? "Pedir" : "Correcto"}</span></td>
@@ -270,11 +274,11 @@ function vistaContabilidad() {
       <div class="kpi-pie">${(totalGastos / 1000).toFixed(1)} mil al mes de estructura</div></div>
     <div class="kpi"><div class="kpi-eti">IVA a ingresar</div><div class="kpi-valor">${eur(ivaRep - ivaSop)}</div>
       <div class="kpi-pie">repercutido ${eur(ivaRep)} menos soportado ${eur(ivaSop)}</div></div>
-    <div class="kpi"><div class="kpi-eti">Resultado del ano</div><div class="kpi-valor">${eur(anio - gastoAnio)}</div>
+    <div class="kpi"><div class="kpi-eti">Resultado del año</div><div class="kpi-valor">${eur(anio - gastoAnio)}</div>
       <div class="kpi-pie">${eur(anio)} de ingresos, ${eur(gastoAnio)} de gastos</div></div>
   </div>
   <div class="dos-columnas">
-    <div class="tarjeta"><div class="tarjeta-cab"><h3>Ingresos y gastos mes a mes</h3><span class="pista">ano en curso</span></div>
+    <div class="tarjeta"><div class="tarjeta-cab"><h3>Ingresos y gastos mes a mes</h3><span class="pista">año en curso</span></div>
       <div class="tarjeta-cuerpo">${graficoLineas([
         { nombre: "Ingresos", color: "#ffc93c", datos: CONTABILIDAD.map(m => m.ingresos) },
         { nombre: "Gastos", color: "#ff5c5c", datos: CONTABILIDAD.map(m => m.gastos) }])}</div></div>
@@ -284,13 +288,13 @@ function vistaContabilidad() {
         <td class="num derecha fuerte">${eur(g.importe)}</td></tr>`).join("")}
       <tr><td class="fuerte">Total</td><td></td><td class="num derecha fuerte">${eur(totalGastos)}</td></tr>
       </tbody></table></div>
-      <div class="leyenda"><span>Los impuestos del trimestre se calculan solos con los datos del ano.</span></div></div>
+      <div class="leyenda"><span>Los impuestos del trimestre se calculan solos con los datos del año.</span></div></div>
   </div>`;
 }
 
 /* ---------- modales ---------- */
-function modalFactura(numero) {
-  const f = facturas.find(x => x.num === numero); if (!f) return;
+function modalFactura(número) {
+  const f = facturas.find(x => x.num === número); if (!f) return;
   const c = cliente(f.cliente), m = c.motos[0] || {};
   abrirModal(`Factura ${f.num}`, `
     <div class="fila-datos"><span>Cliente</span><b>${c.nombre}</b></div>
@@ -303,7 +307,7 @@ function modalFactura(numero) {
     <div class="fila-datos"><span>Estado</span><span class="etiqueta ${estadoClase(f.estado)}">${f.estado}</span></div>
     <div class="sub-bloque"><h4>Registro inalterable</h4>
       <div class="hash">${hashFactura(f)}</div>
-      <div class="nota-legal">Huella de la factura: si alguien cambia un importe o una fecha, la huella deja de coincidir. Asi se cumple la obligacion de conservar el registro sin poder alterarlo.</div></div>
+      <div class="nota-legal">Huella de la factura: si alguien cambia un importe o una fecha, la huella deja de coincidir. Así se cumple la obligación de conservar el registro sin poder alterarlo.</div></div>
     <div class="campo-doble">
       <button class="btn" data-cobrar="${f.num}">${f.estado === "Pendiente" ? "Marcar como cobrada" : "Marcar como pendiente"}</button>
       <button class="btn secundario" data-pdf="${f.num}">Descargar PDF</button>
@@ -326,7 +330,7 @@ function modalCliente(id) {
         ${suyas.map(f => `<div><b>${f.fecha.split("-").reverse().join("/")}</b><span>${f.concepto}</span>
           <span style="margin-left:auto" class="num">${eur(total(f))}</span></div>`).join("") || "<div class='suave'>Sin trabajos registrados</div>"}
       </div></div>
-    <div class="nota-legal">Avisos automaticos: cuando la moto toque revision o ITV, el sistema se lo recuerda por WhatsApp.</div>`);
+    <div class="nota-legal">Avisos automaticos: cuando la moto toque revisión o ITV, el sistema se lo recuerda por WhatsApp.</div>`);
 }
 
 function modalRecambio(ref) {
@@ -336,12 +340,12 @@ function modalRecambio(ref) {
     <div class="fila-datos"><span>Referencia</span><b class="num">${r.ref}</b></div>
     <div class="fila-datos"><span>Proveedor</span><b>${r.proveedor}</b></div>
     <div class="fila-datos"><span>Stock actual</span><b class="num">${r.stock} unidades</b></div>
-    <div class="fila-datos"><span>Minimo de seguridad</span><b class="num">${r.minimo}</b></div>
+    <div class="fila-datos"><span>Minimo de seguridad</span><b class="num">${r.mínimo}</b></div>
     <div class="fila-datos"><span>Precio de coste</span><b class="num">${eur(r.coste)}</b></div>
     <div class="fila-datos"><span>Precio de venta</span><b class="num">${eur(r.pvp)}</b></div>
     <div class="fila-datos"><span>Margen</span><b class="num" style="color:#35d07f">${margen.toFixed(1)}%</b></div>
-    ${r.stock < r.minimo ? `<div class="nota-legal">Esta pieza esta por debajo del minimo. En la version definitiva el aviso llega por correo al proveedor con un clic.</div>` : ""}
-    <button class="btn" data-reponer="${r.ref}">Reponer hasta el minimo mas 10</button>`);
+    ${r.stock < r.mínimo ? `<div class="nota-legal">Esta pieza esta por debajo del mínimo. En la version definitiva el aviso llega por correo al proveedor con un clic.</div>` : ""}
+    <button class="btn" data-reponer="${r.ref}">Reponer hasta el mínimo mas 10</button>`);
 }
 
 function modalNuevaFactura() {
@@ -349,14 +353,14 @@ function modalNuevaFactura() {
     <div class="campo"><label>Cliente</label><select id="nf-cliente">
       ${CLIENTES.map(c => `<option value="${c.id}">${c.nombre} · ${(c.motos[0] || {}).modelo || ""}</option>`).join("")}
     </select></div>
-    <div class="campo"><label>Concepto</label><input id="nf-concepto" placeholder="Revision, cambio de neumatico, averia..." value=""></div>
+    <div class="campo"><label>Concepto</label><input id="nf-concepto" placeholder="Revisión, cambio de neumático, averia..." value=""></div>
     <div class="campo-doble">
       <div class="campo"><label>Base sin IVA</label><input id="nf-base" type="number" min="0" step="0.01" value="120"></div>
       <div class="campo"><label>Tipo de trabajo</label><select id="nf-tipo">${TIPOS.map(t => `<option>${t}</option>`).join("")}</select></div>
     </div>
     <div class="fila-datos"><span>IVA 21%</span><b class="num" id="nf-iva">${eur(120 * IVA)}</b></div>
     <div class="fila-datos"><span>Total</span><b class="num" id="nf-total" style="color:#ffc93c">${eur(120 * (1 + IVA))}</b></div>
-    <div class="nota-legal">Al guardar, la factura entra en el registro con su numero correlativo y su huella. Se puede descargar en PDF con el logo del taller y enviar por WhatsApp al cliente.</div>
+    <div class="nota-legal">Al guardar, la factura entra en el registro con su número correlativo y su huella. Se puede descargar en PDF con el logo del taller y enviar por WhatsApp al cliente.</div>
     <button class="btn" id="nf-guardar">Guardar factura</button>`);
   const base = document.querySelector("#nf-base");
   const pintar = () => {
@@ -473,7 +477,7 @@ document.addEventListener("click", ev => {
   const reponer = ev.target.closest("[data-reponer]");
   if (reponer) {
     const r = recambios.find(x => x.ref === reponer.dataset.reponer);
-    r.stock = r.minimo + 10;
+    r.stock = r.mínimo + 10;
     cerrarModal(); pintarTodo(); return;
   }
 
