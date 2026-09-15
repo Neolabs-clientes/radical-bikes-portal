@@ -482,7 +482,12 @@ document.addEventListener("click", ev => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
+  const vistas = ["panel", "facturas", "clientes", "ordenes", "recambios", "contabilidad"];
+  const pedida = (location.hash || "").replace("#", "");
+  if (vistas.includes(pedida)) seccion = pedida;
   document.querySelector("#buscar").addEventListener("input", ev => { filtro = ev.target.value; pintarTodo(); });
   document.querySelector("#btn-nueva").addEventListener("click", modalNuevaFactura);
   pintarTodo();
+  const detalle = new URLSearchParams(location.search).get("detalle");
+  if (detalle && detalle.indexOf("factura:") === 0) modalFactura(detalle.split(":")[1]);
 });
